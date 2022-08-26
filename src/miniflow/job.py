@@ -19,10 +19,10 @@ class Job(SimpleProcess):
         [pipe.add_job(self) for pipe in self._pipelines]
 
     async def run(self):
-        data: T.List[T.Any] = await self._run()
-        [asyncio.create_task(pipeline.execute(data)) for pipeline in self._pipelines if pipeline.started]
+        data = await self._run()
+        [asyncio.get_event_loop().create_task(pipeline.execute(data)) for pipeline in self._pipelines if pipeline.started]
 
-    async def _run(self) -> []:
+    async def _run(self) -> T.Union[T.List[T.Any], None]:
         raise NotImplemented
 
     def add_pipeline(self, pipe):

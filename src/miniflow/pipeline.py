@@ -39,7 +39,7 @@ class AsyncConsumer(SimpleProcess):
 
     def start(self):
         if not self._only_execute:
-            [asyncio.create_task(self.execute_forever()) for i in range(self._consumer_num)]
+            [asyncio.get_event_loop().create_task(self.execute_forever()) for i in range(self._consumer_num)]
         super().start()
 
 

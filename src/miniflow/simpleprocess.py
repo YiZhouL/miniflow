@@ -11,11 +11,12 @@ class ProcessStatus(enum.Enum):
 class SimpleProcess:
     num = 0
 
-    def __init__(self):
+    def __init__(self, startup=True):
         self._process_num = self.num
         self.__class__.num += 1
         self._process_status = ProcessStatus.CREATED
-        self.start()
+        if startup:
+            self.start()
 
     def start(self):
         if self._process_status in [ProcessStatus.CREATED, ProcessStatus.PAUSED]:
