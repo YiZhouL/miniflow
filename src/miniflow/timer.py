@@ -1,7 +1,9 @@
+import typing as T
 import asyncio
 import datetime
 
 E8 = datetime.timezone(datetime.timedelta(hours=8))
+_timer = T.TypeVar("_timer", "Timer", None, int)
 
 
 class Timer:

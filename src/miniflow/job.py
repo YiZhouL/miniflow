@@ -1,6 +1,5 @@
 import typing as T
 import asyncio
-
 from .simpleprocess import SimpleProcess
 
 
@@ -31,7 +30,6 @@ class Job(SimpleProcess):
 
     def add_scheduler(self, scheduler, timer=None):
         if not scheduler.stopped and scheduler not in self._owners:
-            self._owners.add(scheduler)
             scheduler.add_job(self, timer)
 
     def stop(self):
